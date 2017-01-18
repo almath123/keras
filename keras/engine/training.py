@@ -313,6 +313,10 @@ def weighted_objective(fn):
     into a sample-weighted, cost-masked objective function
     `fn(y_true, y_pred, weights, mask)`.
     """
+    import inspect
+    args_sp = inspect.getargspec(fn)
+    if len(args_sp.args) == 4:
+        return fn
     def weighted(y_true, y_pred, weights, mask=None):
         # score_array has ndim >= 2
         score_array = fn(y_true, y_pred)
