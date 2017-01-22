@@ -1524,7 +1524,7 @@ class Merge(Layer):
                 if mask_i is None:
                     # Input is unmasked. Append all 1s to masks,
                     # but cast it to uint8 first
-                    masks.append(K.cast(K.ones_like(input_i), 'uint8'))
+                    masks.append(K.cast(K.ones_like(input_i), 'bool'))
                 elif K.ndim(mask_i) < K.ndim(input_i):
                     # Mask is smaller than the input, expand it
                     masks.append(K.expand_dims(mask_i))
